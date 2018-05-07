@@ -5,6 +5,7 @@
 #include "QImage"
 #include <stdlib.h>
 #include <iostream>
+#include "camera.h"
 
 #ifdef Q_OS_MAC64
 #include <OpenGL/glu.h>
@@ -18,6 +19,7 @@ class myWindow: public myGLWidget
 private:
     GLuint texture[1];
     float f_x;
+    Camera *myCamera;
 
 public:
     explicit myWindow(QWidget *parent = 0);

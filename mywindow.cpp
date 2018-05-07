@@ -15,6 +15,9 @@ void myWindow::initializeGL()
     glDepthFunc(GL_LEQUAL);
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
+    // Create camera
+    myCamera = new Camera();
+
     loadTexture("res/box.png");
     glEnable(GL_TEXTURE_2D);
 }
@@ -35,10 +38,7 @@ void myWindow::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-
-    glTranslatef(-1.5f, 0.0f, -6.0f);
-    glRotatef(f_x, 1.0, 0.3, 0.1);
-
+    myCamera->look();
     glBegin(GL_QUADS);
     // Face avant
     glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0, -1.0,  1.0f);
