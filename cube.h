@@ -3,14 +3,14 @@
 
 #include "types.h"
 #include <vector>
+#include "matrix.h"
 
-class Cube
+class Cube: public Matrix
 {
 private:
-    std::vector<coord3d_t> coord;
-    std::vector<faces_4_t> faces;
+    std::vector<faces_4_t> m_faces;
 public:
-    Cube();
+    Cube(std::vector<coord3d_t> coord, std::vector<faces_4_t> a_faces);
     std::vector<faces_4_t>* get_faces();
 };
 

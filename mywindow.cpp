@@ -19,7 +19,24 @@ void myWindow::initializeGL()
     myCamera = new Camera();
 
     // Create cube
-    myCube = new Cube();
+    std::vector<coord3d_t> coord;
+    std::vector<faces_4_t> faces;
+    coord.push_back({-1.0, -1.0, 1.0});
+    coord.push_back({ 1.0, -1.0, 1.0});
+    coord.push_back({ 1.0,  1.0, 1.0});
+    coord.push_back({-1.0,  1.0, 1.0});
+    coord.push_back({-1.0, -1.0,-1.0});
+    coord.push_back({-1.0,  1.0,-1.0});
+    coord.push_back({ 1.0,  1.0,-1.0});
+    coord.push_back({ 1.0, -1.0,-1.0});
+
+    faces.push_back({coord[0], coord[1], coord[2], coord[3]});
+    faces.push_back({coord[4], coord[5], coord[6], coord[7]});
+    faces.push_back({coord[5], coord[3], coord[2], coord[6]});
+    faces.push_back({coord[4], coord[7], coord[1], coord[0]});
+    faces.push_back({coord[7], coord[6], coord[2], coord[1]});
+    faces.push_back({coord[4], coord[0], coord[3], coord[5]});
+    myCube = new Cube(coord, faces);
 
     loadTexture("res/box.png");
     glEnable(GL_TEXTURE_2D);
