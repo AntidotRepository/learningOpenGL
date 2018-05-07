@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "camera.h"
+#include "types.h"
+#include "cube.h"
 
 #ifdef Q_OS_MAC64
 #include <OpenGL/glu.h>
@@ -20,6 +22,7 @@ private:
     GLuint texture[1];
     float f_x;
     Camera *myCamera;
+    Cube *myCube;
 
 public:
     explicit myWindow(QWidget *parent = 0);
