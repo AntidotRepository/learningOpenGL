@@ -62,6 +62,7 @@ void myWindow::paintGL()
     // Refresh camera position
     myCamera->look();
     std::vector<faces_4_t>* cube_faces = myCube->get_faces();
+    myCube->rotate(1.0f);
     glBegin(GL_QUADS);
     // Face avant
     glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(0).edge1.X, cube_faces->at(0).edge1.Y, cube_faces->at(0).edge1.Z);

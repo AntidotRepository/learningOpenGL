@@ -11,7 +11,7 @@ private:
 
 public:
     Matrix(std::vector<coord3d_t> coord);
-    std::vector<faces_4_t>* rotate(float angle);
+    std::vector<coord3d_t>* rotate(float angle);
 };
 
 #endif // MATRIX_H
