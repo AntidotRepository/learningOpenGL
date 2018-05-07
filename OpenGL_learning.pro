@@ -1,6 +1,12 @@
-TEMPLATE = app
-CONFIG += console c++11
-CONFIG -= app_bundle
-CONFIG -= qt
+CONFIG += qt
+QT += widgets
+QT += opengl
+TEMPLATE=app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    myglwidget.cpp \
+    mywindow.cpp
+
+HEADERS += \
+    myglwidget.h \
+    mywindow.h

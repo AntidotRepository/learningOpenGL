@@ -1,11 +1,22 @@
 #ifndef MYWINDOW_H
 #define MYWINDOW_H
 
+#include "myglwidget.h"
 
-class myWindow
+#ifdef Q_OS_MAC64
+#include <OpenGL/glu.h>
+#else
+#include "GL/glu.h"
+#endif
+
+class myWindow: public myGLWidget
 {
+    Q_OBJECT
 public:
-    myWindow();
+    explicit myWindow(QWidget *parent = 0);
+    void initializeGL();
+    void resizeGL(int width, int height);
+    void paintGL();
 };
 
 #endif // MYWINDOW_H
