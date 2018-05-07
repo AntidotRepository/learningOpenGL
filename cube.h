@@ -2,15 +2,16 @@
 #define CUBE_H
 
 #include "types.h"
+#include <vector>
 
 class Cube
 {
 private:
-    coord3d_t coord[8];
-    faces_4_t faces[6];
+    std::vector<coord3d_t> coord;
+    std::vector<faces_4_t> faces;
 public:
     Cube();
-    faces_4_t* get_faces();
+    std::vector<faces_4_t>* get_faces();
 };
 
 #endif // CUBE_H

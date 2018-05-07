@@ -7,11 +7,13 @@ SOURCES += main.cpp \
     myglwidget.cpp \
     mywindow.cpp \
     camera.cpp \
-    cube.cpp
+    cube.cpp \
+    matrix.cpp
 
 HEADERS += \
     myglwidget.h \
     mywindow.h \
     camera.h \
     cube.h \
-    types.h
+    types.h \
+    matrix.h
