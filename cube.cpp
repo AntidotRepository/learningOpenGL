@@ -1,7 +1,7 @@
 #include "cube.h"
 
 Cube::Cube(std::vector<coord3d_t> coord, std::vector<faces_4_t> a_faces)
-    : Matrix(coord), m_faces(a_faces)
+    : Shape(coord), m_faces(a_faces)
 {
 }
 

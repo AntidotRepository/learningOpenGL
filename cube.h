@@ -3,9 +3,9 @@
 
 #include "types.h"
 #include <vector>
-#include "matrix.h"
+#include "shape.h"
 
-class Cube: public Matrix
+class Cube: public Shape
 {
 private:
     std::vector<faces_4_t> m_faces;

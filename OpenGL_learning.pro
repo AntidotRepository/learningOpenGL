@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     mywindow.cpp \
     camera.cpp \
     cube.cpp \
-    matrix.cpp
+    matrix.cpp \
+    shape.cpp
 
 HEADERS += \
     myglwidget.h \
@@ -16,4 +17,5 @@ HEADERS += \
     camera.h \
     cube.h \
     types.h \
-    matrix.h
+    matrix.h \
+    shape.h
