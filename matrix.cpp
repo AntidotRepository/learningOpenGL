@@ -10,12 +10,23 @@ Matrix::Matrix(std::vector<coord3d_t> *a_matrix)
 std::vector<coord3d_t>* Matrix::rotate(coord3d_t axis, float angle)
 {
     std::vector<coord3d_t> rotate_m;
-    std::vector<coord3d_t> res;
     rotate_m.push_back({(float)(pow(axis.X, 2)*(1-cos(angle*DEG_TO_RAD))+cos(angle*DEG_TO_RAD)), (float)(axis.X*axis.Y*(1-cos(angle*DEG_TO_RAD))+axis.Z*sin(angle*DEG_TO_RAD)), (float)(axis.X*axis.Z*(1-cos(angle*DEG_TO_RAD))-axis.Y*sin(angle*DEG_TO_RAD))});
     rotate_m.push_back({(float)(axis.X*axis.Y*(1-cos(angle*DEG_TO_RAD))-axis.Z*sin(angle*DEG_TO_RAD)), (float)(pow(axis.Y, 2)*(1-cos(angle*DEG_TO_RAD))+cos(angle*DEG_TO_RAD)), (float)(axis.Y*axis.Z*(1-cos(angle*DEG_TO_RAD))+axis.X*sin(angle*DEG_TO_RAD))});
     rotate_m.push_back({(float)(axis.X*axis.Z*(1-cos(angle*DEG_TO_RAD))+axis.Y*sin(angle*DEG_TO_RAD)), (float)(axis.Y*axis.Z*(1-cos(angle*DEG_TO_RAD))-axis.X*sin(angle*DEG_TO_RAD)), (float)(pow(axis.Z, 2)*(1-cos(angle*DEG_TO_RAD))+cos(angle*DEG_TO_RAD))});
 
     multiplicate(&rotate_m);
+    return my_matrix;
+}
+
+std::vector<coord3d_t>* Matrix::translate(coord3d_t axis, float dist)
+{
+    for(size_t i = 0; i<my_matrix->size(); i++)
+    {
+        my_matrix->at(i).X += axis.X * dist;
+        my_matrix->at(i).Y += axis.Y * dist;
+        my_matrix->at(i).Z += axis.Z * dist;
+    }
+
     return my_matrix;
 }
 

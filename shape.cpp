@@ -13,3 +13,8 @@ std::vector<coord3d_t> Shape::rotate(coord3d_t axis, float angle)
 {
     return *m_matrix.rotate(axis, angle);;
 }
+
+std::vector<coord3d_t> Shape::translate(coord3d_t axis, float dist)
+{
+    return *m_matrix.translate(axis, dist);
+}
