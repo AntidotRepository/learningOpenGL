@@ -7,9 +7,15 @@
 #else
 #include "GL/glu.h"
 #endif
+#include "matrix.h"
+#include "shape.h"
 
-class Camera
+class Camera: public Shape
 {
+private:
+    //Matrix *camPos;
+    std::vector<coord3d_t> mat_cam;
+
 public:
     Camera();
     void look();
