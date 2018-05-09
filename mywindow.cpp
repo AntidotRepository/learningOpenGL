@@ -2,7 +2,8 @@
 
 myWindow::myWindow(QWidget *parent): myGLWidget(60, parent, "OpenGL learning...")
 {
-
+    // Create cube
+    myCube = new Cube();
 }
 
 void myWindow::initializeGL()
@@ -17,26 +18,6 @@ void myWindow::initializeGL()
 
     // Create camera
     myCamera = new Camera();
-
-    // Create cube
-    std::vector<coord3d_t> coord;
-    std::vector<faces_4_t> faces;
-    coord.push_back({-1.0, -1.0, 1.0});
-    coord.push_back({ 1.0, -1.0, 1.0});
-    coord.push_back({ 1.0,  1.0, 1.0});
-    coord.push_back({-1.0,  1.0, 1.0});
-    coord.push_back({-1.0, -1.0,-1.0});
-    coord.push_back({-1.0,  1.0,-1.0});
-    coord.push_back({ 1.0,  1.0,-1.0});
-    coord.push_back({ 1.0, -1.0,-1.0});
-
-    faces.push_back({coord[0], coord[1], coord[2], coord[3]});
-    faces.push_back({coord[4], coord[5], coord[6], coord[7]});
-    faces.push_back({coord[5], coord[3], coord[2], coord[6]});
-    faces.push_back({coord[4], coord[7], coord[1], coord[0]});
-    faces.push_back({coord[7], coord[6], coord[2], coord[1]});
-    faces.push_back({coord[4], coord[0], coord[3], coord[5]});
-    myCube = new Cube(coord, faces);
 
     loadTexture("res/box.png");
     glEnable(GL_TEXTURE_2D);
@@ -61,39 +42,46 @@ void myWindow::paintGL()
 
     // Refresh camera position
     myCamera->look();
+
+    // Get cube position
     std::vector<faces_4_t>* cube_faces = myCube->get_faces();
-    myCube->rotate(1.0f);
+
+    myCube->rotate({1.0, 1.0, 1.0}, 1.0f);
+
+    std::cout<<cube_faces->at(0).edge1->X<<"\n";
+    std::cout.flush();
+
     glBegin(GL_QUADS);
     // Face avant
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(0).edge1.X, cube_faces->at(0).edge1.Y, cube_faces->at(0).edge1.Z);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(0).edge2.X, cube_faces->at(0).edge2.Y, cube_faces->at(0).edge2.Z);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(0).edge3.X, cube_faces->at(0).edge3.Y, cube_faces->at(0).edge3.Z);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(0).edge4.X, cube_faces->at(0).edge4.Y, cube_faces->at(0).edge4.Z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(0).edge1->X, cube_faces->at(0).edge1->Y, cube_faces->at(0).edge1->Z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(0).edge2->X, cube_faces->at(0).edge2->Y, cube_faces->at(0).edge2->Z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(0).edge3->X, cube_faces->at(0).edge3->Y, cube_faces->at(0).edge3->Z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(0).edge4->X, cube_faces->at(0).edge4->Y, cube_faces->at(0).edge4->Z);
     // Face arrière
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(1).edge1.X, cube_faces->at(1).edge1.Y, cube_faces->at(1).edge1.Z);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(1).edge2.X, cube_faces->at(1).edge2.Y, cube_faces->at(1).edge2.Z);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(1).edge3.X, cube_faces->at(1).edge3.Y, cube_faces->at(1).edge3.Z);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(1).edge4.X, cube_faces->at(1).edge4.Y, cube_faces->at(1).edge4.Z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(1).edge1->X, cube_faces->at(1).edge1->Y, cube_faces->at(1).edge1->Z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(1).edge2->X, cube_faces->at(1).edge2->Y, cube_faces->at(1).edge2->Z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(1).edge3->X, cube_faces->at(1).edge3->Y, cube_faces->at(1).edge3->Z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(1).edge4->X, cube_faces->at(1).edge4->Y, cube_faces->at(1).edge4->Z);
     // Face haut
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(2).edge1.X, cube_faces->at(2).edge1.Y, cube_faces->at(2).edge1.Z);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(2).edge2.X, cube_faces->at(2).edge2.Y, cube_faces->at(2).edge2.Z);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(2).edge3.X, cube_faces->at(2).edge3.Y, cube_faces->at(2).edge3.Z);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(2).edge4.X, cube_faces->at(2).edge4.Y, cube_faces->at(2).edge4.Z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(2).edge1->X, cube_faces->at(2).edge1->Y, cube_faces->at(2).edge1->Z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(2).edge2->X, cube_faces->at(2).edge2->Y, cube_faces->at(2).edge2->Z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(2).edge3->X, cube_faces->at(2).edge3->Y, cube_faces->at(2).edge3->Z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(2).edge4->X, cube_faces->at(2).edge4->Y, cube_faces->at(2).edge4->Z);
     // Face bas
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(3).edge1.X, cube_faces->at(3).edge1.Y, cube_faces->at(3).edge1.Z);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(3).edge2.X, cube_faces->at(3).edge2.Y, cube_faces->at(3).edge2.Z);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(3).edge3.X, cube_faces->at(3).edge3.Y, cube_faces->at(3).edge3.Z);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(3).edge4.X, cube_faces->at(3).edge4.Y, cube_faces->at(3).edge4.Z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(3).edge1->X, cube_faces->at(3).edge1->Y, cube_faces->at(3).edge1->Z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(3).edge2->X, cube_faces->at(3).edge2->Y, cube_faces->at(3).edge2->Z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(3).edge3->X, cube_faces->at(3).edge3->Y, cube_faces->at(3).edge3->Z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(3).edge4->X, cube_faces->at(3).edge4->Y, cube_faces->at(3).edge4->Z);
     // Face droite
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(4).edge1.X, cube_faces->at(4).edge1.Y, cube_faces->at(4).edge1.Z);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(4).edge2.X, cube_faces->at(4).edge2.Y, cube_faces->at(4).edge2.Z);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(4).edge3.X, cube_faces->at(4).edge3.Y, cube_faces->at(4).edge3.Z);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(4).edge4.X, cube_faces->at(4).edge4.Y, cube_faces->at(4).edge4.Z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(4).edge1->X, cube_faces->at(4).edge1->Y, cube_faces->at(4).edge1->Z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(4).edge2->X, cube_faces->at(4).edge2->Y, cube_faces->at(4).edge2->Z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(4).edge3->X, cube_faces->at(4).edge3->Y, cube_faces->at(4).edge3->Z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(4).edge4->X, cube_faces->at(4).edge4->Y, cube_faces->at(4).edge4->Z);
     // Face gauche
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(5).edge1.X, cube_faces->at(5).edge1.Y, cube_faces->at(5).edge1.Z);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(5).edge2.X, cube_faces->at(5).edge2.Y, cube_faces->at(5).edge2.Z);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(5).edge3.X, cube_faces->at(5).edge3.Y, cube_faces->at(5).edge3.Z);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(5).edge4.X, cube_faces->at(5).edge4.Y, cube_faces->at(5).edge4.Z);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(cube_faces->at(5).edge1->X, cube_faces->at(5).edge1->Y, cube_faces->at(5).edge1->Z);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(cube_faces->at(5).edge2->X, cube_faces->at(5).edge2->Y, cube_faces->at(5).edge2->Z);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(cube_faces->at(5).edge3->X, cube_faces->at(5).edge3->Y, cube_faces->at(5).edge3->Z);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(cube_faces->at(5).edge4->X, cube_faces->at(5).edge4->Y, cube_faces->at(5).edge4->Z);
     glEnd();
 }
 

@@ -10,10 +10,10 @@ struct coord3d_t
 
 struct faces_4_t
 {
-    coord3d_t edge1;
-    coord3d_t edge2;
-    coord3d_t edge3;
-    coord3d_t edge4;
+    coord3d_t* edge1;
+    coord3d_t* edge2;
+    coord3d_t* edge3;
+    coord3d_t* edge4;
 };
 
 #endif // TYPES_H

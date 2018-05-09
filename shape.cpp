@@ -1,11 +1,15 @@
 #include "shape.h"
 
-Shape::Shape(std::vector<coord3d_t> coord): m_matrix(Matrix(coord))
+Shape::Shape(): m_matrix(NULL)
 {
 }
 
-std::vector<coord3d_t> Shape::rotate(float angle)
+void Shape::set_matrix(std::vector<coord3d_t>* matrix)
 {
-    // toDo
-    return std::vector<coord3d_t>();
+    m_matrix = Matrix(matrix);
+}
+
+std::vector<coord3d_t> Shape::rotate(coord3d_t axis, float angle)
+{
+    return *m_matrix.rotate(axis, angle);;
 }

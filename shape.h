@@ -11,8 +11,9 @@ private:
     Matrix m_matrix;
 
 public:
-    Shape(std::vector<coord3d_t> coord);
-    std::vector<coord3d_t> rotate(float angle);
+    Shape();
+    void set_matrix(std::vector<coord3d_t>* matrix);
+    std::vector<coord3d_t> rotate(coord3d_t axis, float angle);
 };
 
 #endif // SHAPE_H

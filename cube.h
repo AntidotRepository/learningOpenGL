@@ -8,9 +8,11 @@
 class Cube: public Shape
 {
 private:
-    std::vector<faces_4_t> m_faces;
+    std::vector<coord3d_t> *m_coord;
+    std::vector<faces_4_t> *m_faces;
+
 public:
-    Cube(std::vector<coord3d_t> coord, std::vector<faces_4_t> a_faces);
+    Cube();
     std::vector<faces_4_t>* get_faces();
 };
 
