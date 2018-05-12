@@ -92,9 +92,9 @@ void myWindow::paintGL()
     {
         myCamera->rotateCam(1, 0);
     }
-    //myCamera->rotateCam(rotateXAngle, rotateYAngle);
-    //rotateXAngle = 0;
-    //rotateYAngle = 0;
+    myCamera->rotateCam(-rotateXAngle, rotateYAngle);
+    rotateXAngle = 0;
+    rotateYAngle = 0;
 
     glBegin(GL_QUADS);
     // Face avant
