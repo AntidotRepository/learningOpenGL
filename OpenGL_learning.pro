@@ -1,4 +1,5 @@
 CONFIG += qt
+#CONFIG += console
 QT += widgets
 QT += opengl
 TEMPLATE=app
@@ -18,4 +19,5 @@ HEADERS += \
     cube.h \
     types.h \
     matrix.h \
-    shape.h
+    shape.h \
+    defines.h

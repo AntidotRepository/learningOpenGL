@@ -42,13 +42,27 @@ void myWindow::paintGL()
 
     // Refresh camera position
     myCamera->look();
-    myCamera->rotate({1.0, 1.0, 1.0}, 1.0f);
-    myCamera->translate({-1.0, -1.0, -1.0}, 0.01f);
     // Get cube position
     std::vector<faces_4_t>* cube_faces = myCube->get_faces();
 
 //    myCube->rotate({1.0, 1.0, 1.0}, 1.0f);
 //    myCube->translate({1.0, 0.0, 0.0}, 0.01f);
+    if(moveForward == true)
+    {
+        myCamera->translate({0.0f, 1.0f, 0.0f}, 1.0f * MOVING_SPEED);
+    }
+    if(moveBackward == true)
+    {
+        myCamera->translate({0.0f, -1.0f, 0.0f}, 1.0f * MOVING_SPEED);
+    }
+    if(moveLeftward == true)
+    {
+        myCamera->translate({-1.0f, 0.0f, 0.0f}, 1.0f * MOVING_SPEED);
+    }
+    if(moveRightward == true)
+    {
+        myCamera->translate({1.0f, 0.0f, 0.0f}, 1.0f * MOVING_SPEED);
+    }
 
     glBegin(GL_QUADS);
     // Face avant
@@ -100,5 +114,49 @@ void myWindow::loadTexture(QString textureName)
     else
     {
         std::cout<<"Could not load texture!";
+    }
+}
+
+void myWindow::keyReleaseEvent(QKeyEvent *keyEvent)
+{
+    switch(keyEvent->key())
+    {
+    case Qt::Key_Z:
+        moveForward = false;
+        break;
+    case Qt::Key_S:
+        moveBackward = false;
+        break;
+    case Qt::Key_Q:
+        moveLeftward = false;
+        break;
+    case Qt::Key_D:
+        moveRightward = false;
+        break;
+    }
+}
+
+void myWindow::keyPressEvent(QKeyEvent *keyEvent)
+{
+    switch(keyEvent->key())
+    {
+    case Qt::Key_Escape:
+        close();
+        break;
+    case Qt::Key_F1:
+        toggleFullWindow();
+        break;
+    case Qt::Key_Z:
+        moveForward = true;
+        break;
+    case Qt::Key_S:
+        moveBackward = true;
+        break;
+    case Qt::Key_Q:
+        moveLeftward = true;
+        break;
+    case Qt::Key_D:
+        moveRightward = true;
+        break;
     }
 }
