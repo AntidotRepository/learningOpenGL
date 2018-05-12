@@ -27,6 +27,10 @@ private:
     bool moveBackward;
     bool moveLeftward;
     bool moveRightward;
+    bool rotateUp;
+    bool rotateDown;
+    bool rotateLeft;
+    bool rotateRight;
     float rotateXAngle;
     float rotateYAngle;
 

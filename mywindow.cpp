@@ -9,6 +9,10 @@ myWindow::myWindow(QWidget *parent): myGLWidget(60, parent, "OpenGL learning..."
     moveBackward = false;
     moveLeftward = false;
     moveRightward = false;
+    rotateDown = false;
+    rotateLeft = false;
+    rotateRight = false;
+    rotateUp = false;
 
     // Enable mouse move events even if no button is pressed
     setMouseTracking(true);
@@ -72,7 +76,25 @@ void myWindow::paintGL()
     {
         myCamera->moveRightward(1);
     }
-    myCamera->rotateCam(rotateXAngle, rotateYAngle);
+    if(rotateUp == true)
+    {
+        myCamera->rotateCam(0, 1);
+    }
+    if(rotateDown == true)
+    {
+        myCamera->rotateCam(0, -1);
+    }
+    if(rotateLeft == true)
+    {
+        myCamera->rotateCam(-1, 0);
+    }
+    if(rotateRight == true)
+    {
+        myCamera->rotateCam(1, 0);
+    }
+    //myCamera->rotateCam(rotateXAngle, rotateYAngle);
+    //rotateXAngle = 0;
+    //rotateYAngle = 0;
 
     glBegin(GL_QUADS);
     // Face avant
@@ -143,6 +165,18 @@ void myWindow::keyReleaseEvent(QKeyEvent *keyEvent)
     case Qt::Key_D:
         moveRightward = false;
         break;
+    case Qt::Key_Up:
+        rotateUp = false;
+        break;
+    case Qt::Key_Down:
+        rotateDown = false;
+        break;
+    case Qt::Key_Left:
+        rotateLeft = false;
+        break;
+    case Qt::Key_Right:
+        rotateRight = false;
+        break;
     }
 }
 
@@ -167,6 +201,18 @@ void myWindow::keyPressEvent(QKeyEvent *keyEvent)
         break;
     case Qt::Key_D:
         moveRightward = true;
+        break;
+    case Qt::Key_Up:
+        rotateUp = true;
+        break;
+    case Qt::Key_Down:
+        rotateDown = true;
+        break;
+    case Qt::Key_Left:
+        rotateLeft = true;
+        break;
+    case Qt::Key_Right:
+        rotateRight = true;
         break;
     }
 }
