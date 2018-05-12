@@ -8,7 +8,6 @@
 #include "camera.h"
 #include "types.h"
 #include "cube.h"
-#include "defines.h"
 
 #ifdef Q_OS_MAC64
 #include <OpenGL/glu.h>

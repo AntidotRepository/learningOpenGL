@@ -58,29 +58,21 @@ void myWindow::paintGL()
 
     if(moveForward == true)
     {
-        myCamera->translate({0.0f, 1.0f, 0.0f}, 1.0f * MOVING_SPEED);
+        myCamera->moveForward(1);
     }
     if(moveBackward == true)
     {
-        myCamera->translate({0.0f, -1.0f, 0.0f}, 1.0f * MOVING_SPEED);
+        myCamera->moveBackward(1);
     }
     if(moveLeftward == true)
     {
-        myCamera->translate({-1.0f, 0.0f, 0.0f}, 1.0f * MOVING_SPEED);
+        myCamera->moveLeftward(1);
     }
     if(moveRightward == true)
     {
-        myCamera->translate({1.0f, 0.0f, 0.0f}, 1.0f * MOVING_SPEED);
+        myCamera->moveRightward(1);
     }
-    if(rotateXAngle != 0)
-    {
-        // If the mouse move on X axis, we rotate around Z axis!
-        myCamera->rotate({0.0f, 0.0f, 1.0f}, rotateXAngle * ROTATION_SPEED);
-    }
-    if(rotateYAngle != 0)
-    {
-        myCamera->rotate({1.0f, 0.0f, 0.0f}, rotateYAngle * ROTATION_SPEED);
-    }
+    myCamera->rotateCam(rotateXAngle, rotateYAngle);
 
     glBegin(GL_QUADS);
     // Face avant

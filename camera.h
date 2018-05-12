@@ -9,6 +9,7 @@
 #endif
 #include "matrix.h"
 #include "shape.h"
+#include "defines.h"
 
 class Camera: public Shape
 {
@@ -19,6 +20,11 @@ private:
 public:
     Camera();
     void look();
+    void moveForward(float dist);
+    void moveLeftward(float dist);
+    void moveBackward(float dist);
+    void moveRightward(float dist);
+    void rotateCam(float angleX, float angleY);
 };
 
 #endif // CAMERA_H
