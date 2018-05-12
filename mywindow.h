@@ -28,6 +28,8 @@ private:
     bool moveBackward;
     bool moveLeftward;
     bool moveRightward;
+    float rotateXAngle;
+    float rotateYAngle;
 
 public:
     explicit myWindow(QWidget *parent = 0);
@@ -37,6 +39,7 @@ public:
     void loadTexture(QString textureName);
     void keyReleaseEvent(QKeyEvent *keyEvent);
     void keyPressEvent(QKeyEvent *keyEvent);
+    void mouseMoveEvent(QMouseEvent *mouseEvent);
 };
 
 #endif // MYWINDOW_H

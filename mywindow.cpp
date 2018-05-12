@@ -4,6 +4,14 @@ myWindow::myWindow(QWidget *parent): myGLWidget(60, parent, "OpenGL learning..."
 {
     // Create cube
     myCube = new Cube();
+
+    moveForward = false;
+    moveBackward = false;
+    moveLeftward = false;
+    moveRightward = false;
+
+    // Enable mouse move events even if no button is pressed
+    setMouseTracking(true);
 }
 
 void myWindow::initializeGL()
@@ -47,6 +55,7 @@ void myWindow::paintGL()
 
 //    myCube->rotate({1.0, 1.0, 1.0}, 1.0f);
 //    myCube->translate({1.0, 0.0, 0.0}, 0.01f);
+
     if(moveForward == true)
     {
         myCamera->translate({0.0f, 1.0f, 0.0f}, 1.0f * MOVING_SPEED);
@@ -62,6 +71,15 @@ void myWindow::paintGL()
     if(moveRightward == true)
     {
         myCamera->translate({1.0f, 0.0f, 0.0f}, 1.0f * MOVING_SPEED);
+    }
+    if(rotateXAngle != 0)
+    {
+        // If the mouse move on X axis, we rotate around Z axis!
+        myCamera->rotate({0.0f, 0.0f, 1.0f}, rotateXAngle * ROTATION_SPEED);
+    }
+    if(rotateYAngle != 0)
+    {
+        myCamera->rotate({1.0f, 0.0f, 0.0f}, rotateYAngle * ROTATION_SPEED);
     }
 
     glBegin(GL_QUADS);
@@ -159,4 +177,17 @@ void myWindow::keyPressEvent(QKeyEvent *keyEvent)
         moveRightward = true;
         break;
     }
+}
+
+void myWindow::mouseMoveEvent(QMouseEvent *mouseEvent)
+{
+    static int oldXPos = 0;
+    static int oldYPos = 0;
+
+    rotateXAngle = oldXPos - mouseEvent->pos().x();
+    rotateYAngle = oldYPos - mouseEvent->pos().y();
+
+    oldXPos = mouseEvent->pos().x();
+    oldYPos = mouseEvent->pos().y();
+
 }
