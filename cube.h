@@ -8,6 +8,8 @@
 class Cube: public Shape
 {
 private:
+    std::vector<coord3d_t> *m_pos;
+    std::vector<coord3d_t> *m_edges;
     std::vector<coord3d_t> *m_coord;
     std::vector<faces_4_t> *m_faces;
 

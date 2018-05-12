@@ -42,12 +42,13 @@ void myWindow::paintGL()
 
     // Refresh camera position
     myCamera->look();
-    // myCamera->rotate({1.0, 1.0, 1.0}, 1.0f);
+    myCamera->rotate({1.0, 1.0, 1.0}, 1.0f);
+    myCamera->translate({-1.0, -1.0, -1.0}, 0.01f);
     // Get cube position
     std::vector<faces_4_t>* cube_faces = myCube->get_faces();
 
-    //myCube->rotate({1.0, 1.0, 1.0}, 1.0f);
-    myCube->translate({1.0, 1.0, 0.0}, 0.01f);
+//    myCube->rotate({1.0, 1.0, 1.0}, 1.0f);
+//    myCube->translate({1.0, 0.0, 0.0}, 0.01f);
 
     glBegin(GL_QUADS);
     // Face avant

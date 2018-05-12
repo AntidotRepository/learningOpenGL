@@ -14,7 +14,8 @@ class Camera: public Shape
 {
 private:
     //Matrix *camPos;
-    std::vector<coord3d_t> mat_cam;
+    std::vector<coord3d_t> *mat_cam_pos;
+    std::vector<coord3d_t> *mat_cam_dir;
 
 public:
     Camera();
