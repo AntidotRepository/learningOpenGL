@@ -6,6 +6,8 @@ Camera::Camera() : Shape()
     mat_cam_pos->push_back({0.0f, 0.0f, 0.0f}); // Position
     mat_cam_dir = new std::vector<coord3d_t>();
     mat_cam_dir->push_back({1.0f, 0.0f, 0.0f}); // Eye direction (looking one step ahead)
+    mat_cam_dir->push_back({0.0f, 1.0f, 0.0f}); // Rotation axis around Y
+    mat_cam_dir->push_back({0.0f, 0.0f, 1.0f}); // Rotation axis around Z
 
     set_matrix(mat_cam_pos, mat_cam_dir);
 }
@@ -39,8 +41,6 @@ void Camera::moveRightward(float dist)
 
 void Camera::rotateCam(float angleX, float angleY)
 {
-    rotate({0.0f, 0.0f, 1.0f}, angleX * ROTATION_SPEED);
-    rotate({0.0f, 1.0f, 0.0f}, angleY * ROTATION_SPEED);
-    std::cout<<"angleY: "<<angleY<<" X: "<<mat_cam_dir->at(0).X<<" Y: "<<mat_cam_dir->at(0).Y<<" Z: "<<mat_cam_dir->at(0).Z<<"\n";
-    std::cout.flush();
+    rotate({mat_cam_dir->at(2).X, mat_cam_dir->at(2).Y, mat_cam_dir->at(2).Z}, angleX * ROTATION_SPEED); // Left/Right
+    rotate({mat_cam_dir->at(1).X, mat_cam_dir->at(1).Y, mat_cam_dir->at(1).Z}, angleY * ROTATION_SPEED); // Up/Down
 }
