@@ -17,7 +17,6 @@ class Shape
 private:
     Matrix m_pos;
     Matrix m_edges;
-    Matrix *m_coord;
     std::vector<faces_4_t> *m_faces;
 
 public:

@@ -6,7 +6,7 @@ myWindow::myWindow(QWidget *parent): myGLWidget(60, parent, "OpenGL learning..."
     coord3d_t posCube1 = {0, 0, 0};
     coord3d_t posCube2 = {-5, -5, -10};
     myCube1 = new Cube(posCube1, 1);
-    myCube2 = new Cube(posCube2, 10);
+    //myCube2 = new Cube(posCube2, 10);
 
     moveForward = false;
     moveBackward = false;
@@ -60,8 +60,8 @@ void myWindow::paintGL()
     // Get cube position
     //std::vector<faces_4_t>* cube1_faces = myCube1->get_faces();
 
-//    myCube->rotate({1.0, 1.0, 1.0}, 1.0f);
-//    myCube->translate({1.0, 0.0, 0.0}, 0.01f);
+    myCube1->rotate({1.0, 1.0, 1.0}, 1.0f);
+    myCube1->translate({1.0, 0.0, 0.0}, 0.01f);
 
     if(moveForward == true)
     {
