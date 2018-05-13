@@ -32,7 +32,7 @@ void Shape::draw()
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glBegin(GL_QUADS);
     // Face avant
-    for(int i = 0; i<2; i++)
+    for(int i = 0; i<m_faces->size(); i++)
     {
         glTexCoord2f(m_text->at(m_textFaces->at(i).edge1).X, m_text->at(m_textFaces->at(i).edge1).Y); glVertex3f(m_pos.get(0).X + m_edges.get(m_faces->at(i).edge1).X, m_pos.get(0).Y + m_edges.get(m_faces->at(i).edge1).Y, m_pos.get(0).Z + m_edges.get(m_faces->at(i).edge1).Z);
         glTexCoord2f(m_text->at(m_textFaces->at(i).edge2).X, m_text->at(m_textFaces->at(i).edge2).Y); glVertex3f(m_pos.get(0).X + m_edges.get(m_faces->at(i).edge2).X, m_pos.get(0).Y + m_edges.get(m_faces->at(i).edge2).Y, m_pos.get(0).Z + m_edges.get(m_faces->at(i).edge2).Z);
