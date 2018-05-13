@@ -8,12 +8,16 @@ struct coord3d_t
     float Z;
 };
 
+/**
+ * @brief The faces_4_t struct
+ * Indices of edges.
+ */
 struct faces_4_t
 {
-    coord3d_t* edge1;
-    coord3d_t* edge2;
-    coord3d_t* edge3;
-    coord3d_t* edge4;
+    int edge1;
+    int edge2;
+    int edge3;
+    int edge4;
 };
 
 #endif // TYPES_H

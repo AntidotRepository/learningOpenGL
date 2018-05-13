@@ -9,7 +9,7 @@ Camera::Camera() : Shape()
     mat_cam_dir->push_back({0.0f, 1.0f, 0.0f}); // Rotation axis around Y
     mat_cam_dir->push_back({0.0f, 0.0f, 1.0f}); // Rotation axis around Z
 
-    set_matrix(mat_cam_pos, mat_cam_dir);
+    set_matrices(mat_cam_pos, mat_cam_dir, NULL);
 }
 
 void Camera::look()

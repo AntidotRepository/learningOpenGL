@@ -22,7 +22,8 @@ private:
     GLuint texture[1];
     float f_x;
     Camera *myCamera;
-    Cube *myCube;
+    Cube *myCube1;
+    Cube *myCube2;
     bool moveForward;
     bool moveBackward;
     bool moveLeftward;

@@ -44,3 +44,13 @@ std::vector<coord3d_t>* Matrix::multiplicate(std::vector<coord3d_t> *mat)
 
     return my_matrix;
 }
+
+void Matrix::add(coord3d_t coord)
+{
+    my_matrix->push_back(coord);
+}
+
+coord3d_t Matrix::get(int ID)
+{
+    return my_matrix->at(ID);
+}

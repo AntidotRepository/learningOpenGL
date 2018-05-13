@@ -16,6 +16,8 @@ public:
     std::vector<coord3d_t> *rotate(coord3d_t axis, float angle);
     std::vector<coord3d_t> *translate(coord3d_t axis, float dist);
     std::vector<coord3d_t> *multiplicate(std::vector<coord3d_t> *mat2);
+    void add(coord3d_t coord);
+    coord3d_t get(int ID);
 };
 
 #endif // MATRIX_H

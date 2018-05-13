@@ -14,7 +14,7 @@ private:
     std::vector<faces_4_t> *m_faces;
 
 public:
-    Cube();
+    Cube(coord3d_t location, float width);
     std::vector<faces_4_t>* get_faces();
 };
 
