@@ -2,12 +2,6 @@
 
 myWindow::myWindow(QWidget *parent): myGLWidget(60, parent, "OpenGL learning...")
 {
-    // Create cube
-    coord3d_t posCube1 = {0, 0, 0};
-    coord3d_t posCube2 = {-5, -5, -10};
-    myCube1 = new Cube(posCube1, 1);
-    myCube2 = new Cube(posCube2, 10);
-
     moveForward = false;
     moveBackward = false;
     moveLeftward = false;
@@ -34,8 +28,14 @@ void myWindow::initializeGL()
     // Create camera
     myCamera = new Camera();
 
-    loadTexture("res/box.png");
     glEnable(GL_TEXTURE_2D);
+
+    // Create cube
+    coord3d_t posCube1 = {0, 0, 0};
+    coord3d_t posCube2 = {-5, -5, -10};
+
+    myCube1 = new Cube(posCube1, 1);
+    myCube2 = new Cube(posCube2, 10, "res/box.png");
 }
 
 void myWindow::resizeGL(int width, int height)
@@ -101,25 +101,6 @@ void myWindow::paintGL()
 
     myCube1->draw();
     myCube2->draw();
-}
-
-void myWindow::loadTexture(QString textureName)
-{
-    QImage qim_Texture;
-    QImage qim_TempTexture;
-    if(qim_TempTexture.load(textureName))
-    {
-        qim_Texture = QGLWidget::convertToGLFormat(qim_TempTexture);
-        glGenTextures(1, &texture[0]);
-        glBindTexture(GL_TEXTURE_2D, texture[0]);
-        glTexImage2D(GL_TEXTURE_2D, 0, 3, qim_Texture.width(), qim_Texture.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, qim_Texture.bits());
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    }
-    else
-    {
-        std::cout<<"Could not load texture!";
-    }
 }
 
 void myWindow::keyReleaseEvent(QKeyEvent *keyEvent)

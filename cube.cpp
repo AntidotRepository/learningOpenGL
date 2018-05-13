@@ -1,11 +1,14 @@
 #include "cube.h"
 
-Cube::Cube(coord3d_t pos, float width): Shape()
+Cube::Cube(coord3d_t pos, float width, QString textureFile): Shape()
 {
     m_pos   = new std::vector<coord3d_t>();
     m_edges = new std::vector<coord3d_t>();
     m_coord = new std::vector<coord3d_t>();
     m_faces = new std::vector<faces_4_t>();
+    m_text = new std::vector<coord2d_t>();
+    m_textFaces = new std::vector<faces_4_t>();
+    m_textureFile = textureFile;
 
     m_pos->push_back(pos);
 
@@ -31,6 +34,25 @@ Cube::Cube(coord3d_t pos, float width): Shape()
     m_faces->push_back(face4);
     m_faces->push_back(face5);
     m_faces->push_back(face6);
+
+    m_text->push_back({0.0f, 0.0f});
+    m_text->push_back({0.0f, 1.0f});
+    m_text->push_back({1.0f, 0.0f});
+    m_text->push_back({1.0f, 1.0f});
+
+    faces_4_t text_face1 = {0, 2, 3, 1};
+    faces_4_t text_face2 = {2, 3, 1, 0};
+    faces_4_t text_face3 = {1, 0, 2, 3};
+    faces_4_t text_face4 = {3, 1, 0, 1};
+    faces_4_t text_face5 = {2, 3, 1, 0};
+    faces_4_t text_face6 = {0, 2, 3, 1};
+
+    m_textFaces->push_back(text_face1);
+    m_textFaces->push_back(text_face2);
+    m_textFaces->push_back(text_face3);
+    m_textFaces->push_back(text_face4);
+    m_textFaces->push_back(text_face5);
+    m_textFaces->push_back(text_face6);
 
     set_matrices(m_pos, m_edges, m_faces);
 }
